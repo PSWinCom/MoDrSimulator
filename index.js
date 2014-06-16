@@ -9,23 +9,23 @@ var server = http.createServer(function(req,res) {
       username=parts[0],
       password=parts[1];
 
-  console.log(req.headers);
-
   console.log('username is "'+username+'" and password is "'+password+'"');
 
   var statusCode = 200;
-  if (username != "test" || password 1= "password")
+  if (username != "test" || password != "password")
     statusCode = 401;
 
   res.writeHead(statusCode,{'Content-Type':'text/xml'});
-  res.end('<?xml version="1.0"?> \
-    <!DOCTYPE> \
-    <MSGLST> \
-      <MSG> \
-        <ID>1</ID> \
-        <STATUS>OK</STATUS> \
-      </MSG> \
-    </MSGLST>');
+  if (statusCode == 200)
+    res.end('<?xml version="1.0"?> \
+      <MSGLST> \
+        <MSG> \
+          <ID>1</ID> \
+          <STATUS>OK</STATUS> \
+        </MSG> \
+      </MSGLST>');
+  else
+    res.end("Unauthorized");
 });
 
 server.listen(port, function () {
