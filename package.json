@@ -9,5 +9,8 @@
   },
   "repository": "",
   "author": "",
-  "license": "BSD"
+  "license": "BSD",
+  "engines": {
+    "node": "0.10.x"
+  }
 }
