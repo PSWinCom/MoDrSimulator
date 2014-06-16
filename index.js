@@ -1,7 +1,7 @@
 var http = require('http');
 var port = process.env.PORT || 1337;;
 
-http.createServer(function(req,res){
+var server = http.createServer(function(req,res) {
   var header=req.headers['authorization']||'',        // get the header
       token=header.split(/\s+/).pop()||'',            // and the encoded auth token
       auth=new Buffer(token, 'base64').toString(),    // convert from base64
@@ -14,14 +14,16 @@ http.createServer(function(req,res){
   console.log('username is "'+username+'" and password is "'+password+'"');
   res.writeHead(200,{'Content-Type':'text/xml'});
   res.end('<?xml version="1.0"?> \
-<!DOCTYPE MSGLST SYSTEM "pswincom_receive_response.dtd"> \
-<MSGLST> \
-  <MSG> \
-    <ID>1</ID> \
-    <STATUS>OK</STATUS> \
-  </MSG> \
-</MSGLST>');
-}).listen(port,'127.0.0.1');
+    <!DOCTYPE MSGLST SYSTEM "pswincom_receive_response.dtd"> \
+    <MSGLST> \
+      <MSG> \
+        <ID>1</ID> \
+        <STATUS>OK</STATUS> \
+        </MSG> \
+    </MSGLST>');
+});
 
-console.log("process.env.PORT = " + process.env.PORT);
-console.log("Listening for MO requests on port " + port);
+server.listen(port, function () {
+  console.log("process.env.PORT = " + process.env.PORT);
+  console.log("Listening for MO requests on port " + port);
+});
