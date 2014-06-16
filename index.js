@@ -1,4 +1,6 @@
 var http = require('http');
+var port = process.env.PORT || 1337;
+
 http.createServer(function(req,res){
   var header=req.headers['authorization']||'',        // get the header
       token=header.split(/\s+/).pop()||'',            // and the encoded auth token
@@ -19,7 +21,6 @@ http.createServer(function(req,res){
     <STATUS>OK</STATUS> \
   </MSG> \
 </MSGLST>');
+}).listen(port,'127.0.0.1');
 
-  console.log("test");
-
-}).listen(process.env.PORT || 1337,'127.0.0.1');
+console.log("Listening on port " + port);
