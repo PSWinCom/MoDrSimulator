@@ -1,5 +1,5 @@
 var http = require('http');
-var port = process.env.PORT || 1337;
+var port = process.env.PORT || 1337;;
 
 http.createServer(function(req,res){
   var header=req.headers['authorization']||'',        // get the header
@@ -23,4 +23,5 @@ http.createServer(function(req,res){
 </MSGLST>');
 }).listen(port,'127.0.0.1');
 
-console.log("Listening on port " + port);
+console.log("process.env.PORT = " + process.env.PORT);
+console.log("Listening for MO requests on port " + port);
