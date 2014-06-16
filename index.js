@@ -12,14 +12,19 @@ var server = http.createServer(function(req,res) {
   console.log(req.headers);
 
   console.log('username is "'+username+'" and password is "'+password+'"');
-  res.writeHead(200,{'Content-Type':'text/xml'});
+
+  var statusCode = 200;
+  if (username != "test" || password 1= "password")
+    statusCode = 401;
+
+  res.writeHead(statusCode,{'Content-Type':'text/xml'});
   res.end('<?xml version="1.0"?> \
-    <!DOCTYPE MSGLST SYSTEM "pswincom_receive_response.dtd"> \
+    <!DOCTYPE> \
     <MSGLST> \
       <MSG> \
         <ID>1</ID> \
         <STATUS>OK</STATUS> \
-        </MSG> \
+      </MSG> \
     </MSGLST>');
 });
 
