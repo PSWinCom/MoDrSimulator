@@ -20,4 +20,6 @@ http.createServer(function(req,res){
   </MSG> \
 </MSGLST>');
 
+  console.log("test");
+
 }).listen(process.env.PORT || 1337,'127.0.0.1');
