@@ -7,6 +7,8 @@
     <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/services.js"></script>
     <script type="text/javascript" src="js/controllers.js"></script>
+    <script type="text/javascript" src="js/directives.js"></script>
+
     <script type="text/javascript" src="js/app.js"></script>
   </head>
   <body ng-controller="EventListCtrl">
@@ -26,7 +28,7 @@
               <tr ng-repeat="event in events">
                 <td>{{event.event}}</td>
                 <td>{{event.time}}</td>
-                <td>{{event.body}}</td>
+                <td><event-detail content="event"></event-detail></td>
               </tr>
             </tbody>
           </table>

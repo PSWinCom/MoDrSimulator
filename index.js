@@ -51,7 +51,7 @@ app.io.route("setuser", function(user) {
 });
 
 app.set("port", port);
-app.use(require("express-xml-bodyparser")());
+app.use(require("express-xml-bodyparser")({ explicitArray: false }));
 app.use(express.static(__dirname + '/static'));
 
 app.get("/events", function(req, res) {
@@ -65,11 +65,11 @@ var eventreceived = function (event) {
   console.log("broadcasted");
 };
 
-app.post("/dr/secure", basicAuth(eventreceived), mo.receivedr(eventreceived));
-app.post("/dr", mo.receivedr(eventreceived));
+app.post("/dr/secure", basicAuth(eventreceived), mo.receive("dr", eventreceived));
+app.post("/dr", mo.receive("dr", eventreceived));
 
-app.post("/mo/secure", basicAuth(eventreceived), mo.receivemo(eventreceived));
-app.post("/mo", mo.receivemo(eventreceived));
+app.post("/mo/secure", basicAuth(eventreceived), mo.receive("mo", eventreceived));
+app.post("/mo", mo.receive("mo", eventreceived));
 
 var server = app.listen(app.get("port"), function() {
   console.log('Listening on port %d', server.address().port);

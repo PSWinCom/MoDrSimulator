@@ -5,7 +5,7 @@
 angular.module('modrApp', [
   'modrApp.controllers',
   'modrApp.services',
-
+  'modrApp.directives'
   // 3rd party dependencies
   //'btford.socket-io'
 ]);

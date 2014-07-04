@@ -1,18 +1,10 @@
-exports.receivemo = function(callback) {
+exports.receive = function(type, callback) {
   return function(req, res) {
-    callback({ event: 'mo', body: req.body.msglst.msg[0] });
-    //res.send("<!DOCTYPE MSGLST SYSTEM \"pswincom_report_response.dtd\">");
+    console.log(req.body);
+    callback({ event: type, body: req.body.MSGLST.MSG[0] || req.body.MSGLST.MSG });
     res.send({ MSGLST: { MSG: [ { ID: 1, STATUS: "OK" } ] } });
   }
-}
-
-exports.receivedr = function(callback) {
-  return function(req, res) {
-    callback({ event: 'dr', body: req.body.msglst.msg[0] });
-    //res.send("<!DOCTYPE MSGLST SYSTEM \"pswincom_report_response.dtd\">");
-    res.send({ MSGLST: { MSG: [ { ID: 1, STATUS: "OK" } ] } });
-  }
-}
+};
 
 exports.list = function() {
   return JSON.stringify(mos);  
