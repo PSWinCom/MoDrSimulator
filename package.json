@@ -12,5 +12,9 @@
   "license": "BSD",
   "engines": {
     "node": "0.10.x"
+  },
+  "dependencies": {
+    "express": "~4.4.4",
+    "express-xml-bodyparser": "0.0.4"
   }
 }
