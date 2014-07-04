@@ -26,12 +26,13 @@
               <tr ng-repeat="event in events">
                 <td>{{event.event}}</td>
                 <td>{{event.time}}</td>
+                <td>{{event.body}}</td>
               </tr>
             </tbody>
           </table>
         </div>
         <div class="col-md-2">
-
+          <button class="btn btn-primary" ng-click="clearEvents()">Clear History</button>
         </div>
       </div>
     </div>

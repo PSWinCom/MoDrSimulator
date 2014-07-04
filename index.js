@@ -7,6 +7,7 @@ var app = express();
 app.http().io();
 
 var mo = require("./mo");
+var credentials = { username: "test", password: "password" };
 
 var basicAuth = function(sendevent) { 
   return function(req, res, next) {
@@ -21,19 +22,33 @@ var basicAuth = function(sendevent) {
     console.log('username is "'+username+'" and password is "'+password+'"');
     
     var statusCode = 200;
-      if (username != "test" || password != "password")
+      if (username != credentials.username || password != credentials.password)
         statusCode = 401;
 
     if (statusCode == 200)
       next();
     else {
-      sendevent({ type: 'authreject', body: { username: username, password: password } });
+      sendevent({ event: 'reject', body: { username: username, password: password } });
       res.send(statusCode, "Unauthorized");
     }
   }
 };
 
 var events = [];
+
+app.io.route("events:clear", function(req) {
+  console.log("events:clear");
+  events = [];
+  app.io.broadcast("events:refresh");
+});
+
+app.io.route("setpw", function(password) {
+  credentials.password = password;
+});
+
+app.io.route("setuser", function(user) {
+  credentials.user = user;
+});
 
 app.set("port", port);
 app.use(require("express-xml-bodyparser")());
