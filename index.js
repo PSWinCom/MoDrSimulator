@@ -1,8 +1,10 @@
 var http = require('http');
-var express = require('express');
+var express = require('express.io');
 var port = process.env.PORT || 1337;;
 
 var app = express();
+
+app.http().io();
 
 var mo = require("./mo");
 
@@ -44,6 +46,8 @@ app.get("/events", function(req, res) {
 var eventreceived = function (event) {
   event.time = new Date();
   events.push(event);
+  app.io.broadcast("event", event);
+  console.log("broadcasted");
 };
 
 app.post("/dr/secure", basicAuth(eventreceived), mo.receivedr(eventreceived));
