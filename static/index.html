@@ -1,0 +1,36 @@
+<html lang="en" ng-app="modrApp">
+  <head>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/controllers.js"></script>
+  </head>
+  <body ng-controller="EventListCtrl">
+    <div class="container">
+      <div class="row">
+        <h1>PSWinCom MO/DR test web</h1>
+      </div>
+      <div class="row">
+        <div class="col-md-10">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Type</th><th>Time</th><th>Detail</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="event in events">
+                <td>{{event.event}}</td>
+                <td>{{event.time}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-md-2">
+
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

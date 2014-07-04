@@ -35,9 +35,10 @@ var events = [];
 
 app.set("port", port);
 app.use(require("express-xml-bodyparser")());
+app.use(express.static(__dirname + '/static'));
 
-app.get("/", function(req, res) {
-  res.send(JSON.stringify(events));
+app.get("/events", function(req, res) {
+  res.send(events);
 });
 
 var eventreceived = function (event) {
