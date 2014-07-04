@@ -5,8 +5,8 @@
 angular
   .module('modrApp.directives', [])
   .directive('eventDetail', function($compile) {
-    var moTemplate = '<div>From: {{content.body.SND}} Text: {{content.body.TEXT}}</div>';
-    var drTemplate = '<div>From: {{content.body.SND}} State: {{content.body.STATE}}</div>';
+    var moTemplate = '<div>Sender: {{content.body.SND}} Text: {{content.body.TEXT}}</div>';
+    var drTemplate = '<div>Receiver: {{content.body.RCV}} State: {{content.body.STATE}}, Ref: {{content.body.REF}}</div>';
     var rejectTemplate = '<div>Rejected: {{content.body.username}}:{{content.body.password}}</div>';    
 
     var getTemplate = function(eventtype) {
