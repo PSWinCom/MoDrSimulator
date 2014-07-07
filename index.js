@@ -51,6 +51,10 @@ app.io.route("setuser", function(user) {
 });
 
 app.set("port", port);
+app.use(function(req, res, next){
+  console.log('%s %s', req.method, req.url);
+  next();
+});
 app.use(require("express-xml-bodyparser")({ explicitArray: false }));
 app.use(express.static(__dirname + '/static'));
 
