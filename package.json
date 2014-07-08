@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "express-xml-bodyparser": "0.0.4",
-    "express.io": "~1.1.13"
+    "express.io": "~1.1.13",
+    "xml2js": "~0.4.4"
   }
 }
