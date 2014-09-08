@@ -5,6 +5,7 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.16/socket.io.min.js"></script>
     <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/json2/20130526/json2.min.js"></script>
     <script type="text/javascript" src="js/services.js"></script>
     <script type="text/javascript" src="js/controllers.js"></script>
     <script type="text/javascript" src="js/directives.js"></script>
@@ -25,7 +26,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr ng-repeat="event in events">
+              <tr ng-repeat="event in events" data-toggle="tooltip" data-placement="bottom" title="{{event.json}}" >
                 <td>{{event.event}}</td>
                 <td>{{event.time}}</td>
                 <td><event-detail content="event"></event-detail></td>
