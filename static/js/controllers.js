@@ -10,9 +10,9 @@ angular.module('modrApp.controllers', []).
     });
     var loaddata = function() {
       $http.get('events').success(function(data) {
-        /*for(idx in data) {
+        for(var idx in data) {
           data[idx].json = JSON.stringify(data[idx], null, "  ");
-        }*/
+        }
         $scope.events = data;
       });
     }
