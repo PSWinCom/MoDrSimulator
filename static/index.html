@@ -1,11 +1,19 @@
 <html lang="en" ng-app="modrApp">
   <head>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+    
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js"></script>
+
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.16/socket.io.min.js"></script>
+
     <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/json2/20130526/json2.min.js"></script>
+
+    <script type="text/javascript" src="js/ui-bootstrap-custom-0.10.0.min.js"></script>
+    <script type="text/javascript" src="js/ui-bootstrap-custom-tpls-0.10.0.min.js"></script>
     <script type="text/javascript" src="js/services.js"></script>
     <script type="text/javascript" src="js/controllers.js"></script>
     <script type="text/javascript" src="js/directives.js"></script>
@@ -19,7 +27,7 @@
       </div>
       <div class="row">
         <div class="col-md-10">
-          <table class="table">
+          <table id="event-list" class="table">
             <thead>
               <tr>
                 <th>Type</th><th>Time</th><th>Detail</th>

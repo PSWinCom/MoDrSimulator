@@ -1,7 +1,7 @@
 var http = require('http');
 var express = require('express.io');
 var port = process.env.PORT || 1337;;
-
+var bodyparser = require('body-parser');
 var app = express();
 
 app.http().io();
@@ -56,6 +56,7 @@ app.use(function(req, res, next){
   next();
 });
 app.use(require("express-xml-bodyparser")({ explicitArray: false }));
+app.use(bodyparser.json());
 app.use(express.static(__dirname + '/static'));
 
 app.get("/events", function(req, res) {
@@ -74,6 +75,12 @@ app.post("/dr", mo.receive("dr", eventreceived));
 
 app.post("/mo/secure", basicAuth(eventreceived), mo.receive("mo", eventreceived));
 app.post("/mo", mo.receive("mo", eventreceived));
+
+app.post("/stats", function(req, res) {
+  console.log(req.body);
+  eventreceived({ event: "stats", body: req.body });
+  res.send(200);
+});
 
 var server = app.listen(app.get("port"), function() {
   console.log('Listening on port %d', server.address().port);

@@ -10,7 +10,7 @@ angular
     var rejectTemplate = '<div>Rejected: {{content.body.username}}:{{content.body.password}}</div>';    
 
     var getTemplate = function(eventtype) {
-        var template = '';
+        var template = '<div>Generic data</div>';
 
         switch(eventtype) {
             case 'dr':
