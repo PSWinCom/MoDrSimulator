@@ -12,6 +12,17 @@ exports.receive = function(type, callback) {
         body: req.body.MSGLST.MSG[0] || req.body.MSGLST.MSG,
         'content-type': req.get("Content-Type")
       });
+    } else if (req.get('Content-Type') == "text/xml") {
+      // SOAP
+      var xml2js = require('xml2js');
+      var builder = new xml2js.Builder();
+      res.set('Content-Type', 'text/xml');
+      req.send(builder.buildObject({ "soap:envelope": { }}));
+      callback({ 
+        event: type, 
+        body: req.body,
+        'content-type': req.get("Content-Type")
+      });
     } else {
       res.set('Content-Type', 'text/plain');
       res.send("0\nOK\n");
