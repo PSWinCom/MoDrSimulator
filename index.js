@@ -77,6 +77,10 @@ app.post("/dr", mo.receive("dr", eventreceived));
 app.post("/mo/secure", basicAuth(eventreceived), mo.receive("mo", eventreceived));
 app.post("/mo", mo.receive("mo", eventreceived));
 
+app.get("/mo/secure", basicAuth(eventreceived), mo.receive("mo", eventreceived));
+app.get("/mo", mo.receive("mo", eventreceived));
+
+
 app.post("/stats", function(req, res) {
   console.log(req.body);
   eventreceived({ event: "stats", body: req.body });
