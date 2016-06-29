@@ -27,20 +27,14 @@
       </div>
       <div class="row">
         <div class="col-md-10">
-          <table id="event-list" class="table">
-            <thead>
-              <tr>
-                <th>Type</th><th>Time</th><th>Detail</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr ng-repeat="event in events" data-toggle="tooltip" data-placement="bottom" title="{{event.json}}" >
-                <td>{{event.event}}</td>
-                <td>{{event.time}}</td>
-                <td><event-detail content="event"></event-detail></td>
-              </tr>
-            </tbody>
-          </table>
+          <div ng-repeat="event in events" data-toggle="tooltip" data-placement="bottom" title="{{event.json}}" class="panel panel-default">
+            <div class="panel-heading">
+            <span class="label label-default">{{event.event}}</span> <small>{{event.time}}</small>
+            </div>
+            <div class="panel-body">
+              <event-detail content="event"></event-detail>
+            </div>
+          </div>
         </div>
         <div class="col-md-2">
           <button class="btn btn-primary" ng-click="clearEvents()">Clear History</button>
