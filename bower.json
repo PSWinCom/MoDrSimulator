@@ -1,0 +1,29 @@
+{
+  "name": "modrsimulator",
+  "main": "index.js",
+  "version": "0.0.0",
+  "authors": [
+    "Henrik Grotle <henrik.grotle@linkmobility.com>"
+  ],
+  "moduleType": [
+    "node"
+  ],
+  "keywords": [
+    "sms",
+    "linkmobility",
+    "gateway"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "socket.io-client": "~1.4.8",
+    "angular": "~1.5.7",
+    "bootstrap": "~3.3.6"
+  }
+}
