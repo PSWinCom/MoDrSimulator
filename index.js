@@ -1,10 +1,10 @@
-var http = require('http');
-var express = require('express.io');
+var express = require('express');
 var port = process.env.PORT || 1337;;
 var bodyparser = require('body-parser');
-var app = express();
 
-app.http().io();
+var app = express();
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
 
 var mo = require("./mo");
 var credentials = { username: "test", password: "password" };
@@ -36,19 +36,21 @@ var basicAuth = function(sendevent) {
 
 var events = [];
 
-app.io.route("events:clear", function(req) {
-  console.log("events:clear");
-  events = [];
-  app.io.broadcast("events:refresh");
-});
+io.on('connection', function(socket) {
+  console.log('socket.io.connection');
+  socket.on("events:clear", function(req) {
+    console.log("events:clear");
+    events = [];
+    socket.broadcast.emit("events:refresh");
+  });
+  socket.on("setpw", function(password) {
+    credentials.password = password;
+  });
+  socket.on("setuser", function(user) {
+    credentials.user = user;
+  });
+})
 
-app.io.route("setpw", function(password) {
-  credentials.password = password;
-});
-
-app.io.route("setuser", function(user) {
-  credentials.user = user;
-});
 
 app.set("port", port);
 app.use(function(req, res, next){
@@ -58,7 +60,7 @@ app.use(function(req, res, next){
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded());
 app.use(require("express-xml-bodyparser")({ explicitArray: false }));
-app.use(express.static(__dirname + '/static'));
+app.use(express.static(__dirname + '/dist/static'));
 
 app.get("/events", function(req, res) {
   res.send(events);
@@ -67,7 +69,7 @@ app.get("/events", function(req, res) {
 var eventreceived = function (event) {
   event.time = new Date();
   events.push(event);
-  app.io.broadcast("event", event);
+  io.emit("event", event);
   console.log("broadcasted");
 };
 
@@ -87,6 +89,6 @@ app.post("/stats", function(req, res) {
   res.send(200);
 });
 
-var server = app.listen(app.get("port"), function() {
+server.listen(app.get("port"), function() {
   console.log('Listening on port %d', server.address().port);
 });
