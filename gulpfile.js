@@ -6,7 +6,12 @@ var minifyCss = require('gulp-minify-css');
 gulp.task('default', function() {
 });
 
-gulp.task('dev', function() {
+gulp.task('bootstrap', function() {
+  gulp.src('src/static/bower_components/bootstrap/dist/fonts/**/*.{ttf,woff,eof,svg,woff2}')
+    .pipe(gulp.dest("dist/static/fonts"));
+});
+
+gulp.task('dev', ['bootstrap'], function() {
     gulp.src('src/static/index.html')
       .pipe(usemin({
             assetsDir: 'src/static',
@@ -15,9 +20,9 @@ gulp.task('dev', function() {
         }))
       .pipe(
         gulp.dest("dist/static"));
-})
+});
 
-gulp.task('prod', function() {
+gulp.task('prod', ['bootstrap'], function() {
     gulp.src('src/static/index.html')
       .pipe(usemin({
             assetsDir: 'src/static',
@@ -26,4 +31,4 @@ gulp.task('prod', function() {
         }))
       .pipe(
         gulp.dest("dist/static"));
-})
+});
