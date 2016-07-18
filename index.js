@@ -39,9 +39,10 @@ var events = [];
 io.on('connection', function(socket) {
   console.log('socket.io.connection');
   socket.on("events:clear", function(req) {
-    console.log("events:clear");
+    console.log("Socket.io: events:clear");
     events = [];
-    socket.broadcast.emit("events:refresh");
+    io.emit("events:refresh");
+    console.log("Socket.io: broadcast.emit(events:refresh)");
   });
   socket.on("setpw", function(password) {
     credentials.password = password;
@@ -66,11 +67,11 @@ app.get("/events", function(req, res) {
   res.send(events);
 });
 
-var eventreceived = function (event) {
+var eventreceived = function (eventdata) {
   event.time = new Date();
-  events.push(event);
-  io.emit("event", event);
-  console.log("broadcasted");
+  events.push(eventdata);
+  io.emit("event", eventdata);
+  console.log("broadcasted event", eventdata);
 };
 
 app.post("/dr/secure", basicAuth(eventreceived), mo.receive("dr", eventreceived));
