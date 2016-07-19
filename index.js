@@ -1,5 +1,5 @@
 var express = require('express');
-var port = process.env.PORT || 1337;;
+var port = process.env.PORT || 3000;;
 var bodyparser = require('body-parser');
 
 var app = express();
@@ -68,7 +68,7 @@ app.get("/events", function(req, res) {
 });
 
 var eventreceived = function (eventdata) {
-  event.time = new Date();
+  eventdata.time = new Date();
   events.push(eventdata);
   io.emit("event", eventdata);
   console.log("broadcasted event", eventdata);
