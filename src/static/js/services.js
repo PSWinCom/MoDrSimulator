@@ -7,7 +7,7 @@
 // In this case it is a simple value service.
 angular.module('modrApp.services', []).
   factory('socket', function ($rootScope) {
-    var socket = io.connect();
+    var socket = io.connect({ transports: ['websocket', 'polling'] });
     return {
       on: function (eventName, callback) {
         socket.on(eventName, function () {  
